@@ -127,6 +127,14 @@ function moveRight() {
   if (currentDirection !== 'LEFT') nextDirection = 'RIGHT';
 }
 
+// Keyboard event listener for controlling the snake
+document.addEventListener('keydown', function(event) {
+  if (event.keyCode === 37 && currentDirection !== 'RIGHT') nextDirection = 'LEFT';  // Left arrow
+  if (event.keyCode === 38 && currentDirection !== 'DOWN') nextDirection = 'UP';    // Up arrow
+  if (event.keyCode === 39 && currentDirection !== 'LEFT') nextDirection = 'RIGHT'; // Right arrow
+  if (event.keyCode === 40 && currentDirection !== 'UP') nextDirection = 'DOWN';    // Down arrow
+});
+
 // Start the game when the page loads
 startGame();
 
