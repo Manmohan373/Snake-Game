@@ -37,7 +37,7 @@ h1 {
 
 #footer {
     position: absolute;
-    bottom: 20px;
+    bottom: 10px;
     font-size: 14px;
     color: #FFF;
     z-index: 2; /* Ensures footer is above the background */
@@ -72,7 +72,7 @@ h1 {
 /* Game Screen styles */
 #game-container {
   position: absolute;
-  bottom: 8%;
+  bottom: 5%;
   text-align: center;
   display: none;
   flex-direction: column;
