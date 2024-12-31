@@ -2,6 +2,53 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 // Game settings
+let startX, startY, endX, endY;
+
+function handleTouchStart(e) {
+    const touch = e.touches[0]; // Get the first touch
+    startX = touch.clientX; // Record starting X position
+    startY = touch.clientY; // Record starting Y position
+}
+
+function handleTouchEnd(e) {
+    const touch = e.changedTouches[0]; // Get the ending touch
+    endX = touch.clientX; // Record ending X position
+    endY = touch.clientY; // Record ending Y position
+
+    const diffX = endX - startX; // Horizontal swipe distance
+    const diffY = endY - startY; // Vertical swipe distance
+
+    // Determine swipe direction
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        // Horizontal swipe
+        if (diffX > 0) {
+            moveRight();
+        } else {
+            moveLeft();
+        }
+    } else {
+        // Vertical swipe
+        if (diffY > 0) {
+            moveDown();
+        } else {
+            moveUp();
+        }
+    }
+}
+
+// Add touch event listeners to the game container
+const gameContainer = document.getElementById('game-container');
+gameContainer.addEventListener('touchstart', handleTouchStart);
+gameContainer.addEventListener('touchend', handleTouchEnd);
+
+// Optional: Prevent default behavior of touch events (scrolling)
+gameContainer.addEventListener('touchmove', function(e) {
+    e.preventDefault(); 
+}, { passive: false });
+
+
+
+
 const canvasSize = 300;
 const box = 10;
 let score = 0;
