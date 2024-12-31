@@ -138,7 +138,7 @@ button:hover {
 }
 
 /* Responsive design: Make the canvas and controls responsive for smaller screens */
-@media (max-width: 600px) {
+@media (max-width: 200px) {
   #gameCanvas {
     width: 90%;
     height: auto;
