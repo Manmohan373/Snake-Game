@@ -1,161 +1,192 @@
 /* Basic reset to remove default margin and padding */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Body styles */
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #222;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  
-  /* Title of the game */
-  h1 {
-    margin-bottom: 20px;
-    font-size: 2rem;
-    color: #32CD32;
-    text-align: center;
-  }
-  
-  /* Start Screen styles */
-  #start-screen {
-    text-align: center;
-  }
-  
-  #player-name {
-    padding: 10px;
-    font-size: 18px;
-    margin-bottom: 20px;
-    width: 200px;
-    text-align: center;
-    border: 2px solid #32CD32;
-    background-color: #333;
-    color: white;
-    border-radius: 5px;
-  }
-  
-  #start-btn {
-    height: 30px;
-    padding: 2px 2px;
-    background-color: #32CD32;
-    color: white;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  #start-btn:hover {
-    background-color: #228B22;
-  }
-  
-  /* Game Screen styles */
-  #game-container {
-    position: relative;
-    text-align: center;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  #scoreboard {
-    margin-top: 10px;
-    font-size: 18px;
-    color: #FFF;
-  }
-  
-  #scoreboard span {
-    margin-right: 10px;
-  }
-  
-  #scoreboard #player-name-display {
-    font-weight: bold;
-    color: #FF6347;
-  }
-  
-  /* Game over screen */
-  .game-over {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 24px;
-    color: red;
-    display: none;
-  }
-  
-  /* Game canvas */
-  #gameCanvas {
-    border: 2px solid #FFF;
-    background-color: #333;
-    margin-top: 20px;
-  }
-  
-  /* Button styles */
-  #buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    gap: 10px;
-  }
-  
-  button {
-    padding: 10px;
-    margin: 5px;
-    background-color: #32CD32;
-    border: none;
-    color: black;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 50px; /* Set fixed width for buttons */
-  }
-  
-  button:hover {
-    background-color: #228B22;
-  }
-  #footer{
-    position: absolute;
-    margin-top: 42%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-  
-  /* Responsive design: Make the canvas and controls responsive for smaller screens */
-  @media (max-width: 600px) {
-    #gameCanvas {
-      width: 90%;
-      height: auto;
-      max-width: 400px;
-    }
-  
-    /* Buttons stack vertically */
-    #buttons {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    button {
-      width: 20%;
-      margin-bottom: 10px;
-    }
-  
-    /* Adjust player name input for smaller screens */
-    #playerName {
-      width: 80%;
-      margin-bottom: 20px;
-    }
-  
-    #start-btn {
-      width: 80%;
-    }
+
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #222;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Title of the game */
+h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #32CD32;
+  text-align: center;
+}
+
+/* Start Screen styles */
+#start-screen {
+    position: absolute;
+    bottom: 250px;
+  text-align: center;
+  z-index: 2; /* Ensures it is above the background */
+}
+
+#footer {
+    position: absolute;
+    bottom: 20px;
+    font-size: 14px;
+    color: #FFF;
+    z-index: 2; /* Ensures footer is above the background */
   }
-  
-  
+#player-name {
+  padding: 10px;
+  font-size: 18px;
+  margin-bottom: 20px;
+  width: 200px;
+  text-align: center;
+  border: 2px solid #32CD32;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+}
+
+#start-btn {
+  height: 30px;
+  padding: 2px 2px;
+  background-color: #32CD32;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#start-btn:hover {
+  background-color: #228B22;
+}
+
+/* Game Screen styles */
+#game-container {
+  position: absolute;
+  bottom: 100px;
+  text-align: center;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2; /* Ensures it is above the background */
+}
+
+#scoreboard {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #FFF;
+}
+
+#scoreboard span {
+  margin-right: 10px;
+}
+
+#scoreboard #player-name-display {
+  font-weight: bold;
+  color: #FF6347;
+}
+
+/* Game over screen */
+.game-over {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: red;
+  display: none;
+}
+
+/* Game canvas */
+#gameCanvas {
+  border: 2px solid #FFF;
+  background-color: #333;
+  margin-top: 20px;
+}
+
+/* Button styles */
+#buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+button {
+  padding: 10px;
+  margin: 5px;
+  background-color: #32CD32;
+  border: none;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 50px; /* Set fixed width for buttons */
+}
+
+button:hover {
+  background-color: #228B22;
+}
+
+/* Responsive design: Make the canvas and controls responsive for smaller screens */
+@media (max-width: 600px) {
+  #gameCanvas {
+    width: 90%;
+    height: auto;
+    max-width: 400px;
+  }
+
+  /* Buttons stack vertically */
+  #buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  button {
+    width: 20%;
+    margin-bottom: 10px;
+  }
+
+  /* Adjust player name input for smaller screens */
+  #player-name {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  #start-btn {
+    width: 80%;
+  }
+
+  /* ------------------ */
+
+  body, html {
+    background: #090d00;
+  }
+
+  /* BACKGROUND */
+  #bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure the background is behind everything else */
+  }
+
+  #bg canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
