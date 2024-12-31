@@ -72,7 +72,7 @@ h1 {
 /* Game Screen styles */
 #game-container {
   position: absolute;
-  bottom: 100px;
+  bottom: 8%;
   text-align: center;
   display: none;
   flex-direction: column;
