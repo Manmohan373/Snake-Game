@@ -23,16 +23,49 @@
     margin-bottom: 20px;
     font-size: 2rem;
     color: #32CD32;
+    text-align: center;
   }
   
-  /* Canvas container */
+  /* Start Screen styles */
+  #start-screen {
+    text-align: center;
+  }
+  
+  #player-name {
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    width: 200px;
+    text-align: center;
+    border: 2px solid #32CD32;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  #start-btn {
+    padding: 10px 20px;
+    background-color: #32CD32;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  #start-btn:hover {
+    background-color: #228B22;
+  }
+  
+  /* Game Screen styles */
   #game-container {
     position: relative;
     text-align: center;
-    margin-top: 10px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
   }
   
-  /* Scoreboard area */
   #scoreboard {
     margin-top: 10px;
     font-size: 18px;
@@ -41,6 +74,11 @@
   
   #scoreboard span {
     margin-right: 10px;
+  }
+  
+  #scoreboard #player-name-display {
+    font-weight: bold;
+    color: #FF6347;
   }
   
   /* Game over screen */
@@ -58,6 +96,7 @@
   #gameCanvas {
     border: 2px solid #FFF;
     background-color: #333;
+    margin-top: 20px;
   }
   
   /* Button styles */
@@ -65,6 +104,7 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    gap: 10px;
   }
   
   button {
@@ -72,10 +112,11 @@
     margin: 5px;
     background-color: #32CD32;
     border: none;
-    color: white;
+    color: black;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
+    width: 50px; /* Set fixed width for buttons */
   }
   
   button:hover {
@@ -85,17 +126,31 @@
   /* Responsive design: Make the canvas and controls responsive for smaller screens */
   @media (max-width: 600px) {
     #gameCanvas {
-      width: 100%;
+      width: 90%;
       height: auto;
+      max-width: 400px;
     }
-    
+  
+    /* Buttons stack vertically */
     #buttons {
       flex-direction: column;
+      align-items: center;
     }
-    
+  
     button {
-      width: 100%;
+      width: 80%;
       margin-bottom: 10px;
     }
+  
+    /* Adjust player name input for smaller screens */
+    #player-name {
+      width: 80%;
+      margin-bottom: 20px;
+    }
+  
+    #start-btn {
+      width: 80%;
+    }
   }
+  
   

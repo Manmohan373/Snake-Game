@@ -6,6 +6,7 @@ const canvasSize = 300;
 const box = 10;
 let score = 0;
 let highScore = localStorage.getItem('highScore') ? parseInt(localStorage.getItem('highScore')) : 0;
+let highScorePlayer = localStorage.getItem('highScorePlayer') || 'Player';
 let snake;
 let food;
 let currentDirection = 'RIGHT';
@@ -15,7 +16,7 @@ let gameInterval;
 // Update score and high score display
 function updateScoreDisplay() {
   document.getElementById('score').textContent = 'Score: ' + score;
-  document.getElementById('highscore').textContent = 'Highscore: ' + highScore;
+  document.getElementById('highscore').textContent = 'Highscore: ' + highScore + ' (' + highScorePlayer + ')';
 }
 
 // Start the game
@@ -25,13 +26,13 @@ function startGame() {
   canvas.height = canvasSize;
   score = 0;
   nextDirection = 'RIGHT';
-  
+
   snake = [
     { x: 50, y: 50 },
     { x: 40, y: 50 },
     { x: 30, y: 50 },
   ];
-  
+
   generateFood();
   clearInterval(gameInterval);
   gameInterval = setInterval(update, 100);
@@ -58,7 +59,9 @@ function update() {
     // Update high score
     if (score > highScore) {
       highScore = score;
+      highScorePlayer = document.getElementById('playerName').value || 'Player'; // Get the player's name or default to 'Player'
       localStorage.setItem('highScore', highScore); // Save high score
+      localStorage.setItem('highScorePlayer', highScorePlayer); // Save the player's name
     }
   } else {
     snake.pop(); // Remove the tail
@@ -91,7 +94,7 @@ function draw() {
   for (let i = 0; i < snake.length; i++) {
     ctx.fillRect(snake[i].x, snake[i].y, box, box);
   }
-  
+
   // Draw the food
   ctx.fillStyle = '#FF6347'; // Food color (tomato red)
   ctx.fillRect(food.x, food.y, box, box);
@@ -136,7 +139,19 @@ document.addEventListener('keydown', function(event) {
 });
 
 // Start the game when the page loads
-startGame();
+function initGame() {
+  document.querySelector('.game-over').style.display = 'none';
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('game-container').style.display = 'block';
+  startGame();
+}
+
+// Start game on button click
+document.getElementById('start-btn').addEventListener('click', function() {
+  const playerName = document.getElementById('playerName').value || 'Player';
+  localStorage.setItem('playerName', playerName);
+  initGame();
+});
 
 // Button event listeners for controlling the snake
 document.getElementById('upButton').addEventListener('click', moveUp);

@@ -7,13 +7,26 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Snake Game 2D</h1>
-  <div id="game-container">
+  <h1>Snake Game 2D</h1>
+  
+  <!-- Start Screen -->
+  <div id="start-screen">
+    <h2>Welcome to Snake Game!</h2>
+    <input type="text" id="player-name" placeholder="Enter your name" required>
+    <button id="start-btn">Start Game</button>
+  </div>
+
+  <!-- Game Screen -->
+  <div id="game-container" style="display:none;">
     <canvas id="gameCanvas"></canvas>
+    <div class="score-board">
+      <div id="player-name-display">Player: </div>
+      <div id="score">Score: 0</div>
+      <div id="highscore">Highscore: 0</div>
+    </div>
+
     <div class="game-over" style="display:none;">Game Over!</div>
-    <div id="score">Score: 0</div>
-    <div id="highscore">Highscore: 0</div>
-    
+
     <!-- Buttons for controlling the snake -->
     <div class="controls">
       <button id="upButton">↑</button>
@@ -27,7 +40,6 @@
 
   <script src="game.js"></script>
   <br>
-    Created by:Manmohan Pattnaik
-    Date:31-12-2024
+  <p>Created by: Manmohan Pattnaik</p>
 </body>
 </html>
