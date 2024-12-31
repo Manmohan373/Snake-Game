@@ -44,7 +44,8 @@
   }
   
   #start-btn {
-    padding: 10px 20px;
+    height: 30px;
+    padding: 2px 2px;
     background-color: #32CD32;
     color: white;
     border: none;
@@ -122,6 +123,10 @@
   button:hover {
     background-color: #228B22;
   }
+  #footer{
+    position: absolute;
+    margin-top: 42%;
+}
   
   /* Responsive design: Make the canvas and controls responsive for smaller screens */
   @media (max-width: 600px) {
@@ -138,12 +143,12 @@
     }
   
     button {
-      width: 80%;
+      width: 20%;
       margin-bottom: 10px;
     }
   
     /* Adjust player name input for smaller screens */
-    #player-name {
+    #playerName {
       width: 80%;
       margin-bottom: 20px;
     }
