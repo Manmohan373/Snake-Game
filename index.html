@@ -8,17 +8,19 @@
 </head>
 <body>
   <div id="game-container">
-    <div class="header">
-      <h1>Manmohan's Snake Game</h1>
-      <div class="scoreboard">
-        <span id="current-score">Score: 0</span>
-        <span id="high-score">High Score: 0</span>
-      </div>
-    </div>
     <canvas id="gameCanvas"></canvas>
-    <div id="gameOver" class="game-over">
-      <h2>Game Over</h2>
-      <button onclick="startGame()">Restart</button>
+    <div class="game-over" style="display:none;">Game Over!</div>
+    <div id="score">Score: 0</div>
+    <div id="highscore">Highscore: 0</div>
+    
+    <!-- Buttons for controlling the snake -->
+    <div class="controls">
+      <button id="upButton">↑</button>
+      <div>
+        <button id="leftButton">←</button>
+        <button id="rightButton">→</button>
+      </div>
+      <button id="downButton">↓</button>
     </div>
   </div>
 

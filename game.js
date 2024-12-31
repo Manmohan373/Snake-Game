@@ -2,74 +2,29 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 // Game settings
-let startX, startY, endX, endY;
-
-function handleTouchStart(e) {
-    const touch = e.touches[0]; // Get the first touch
-    startX = touch.clientX; // Record starting X position
-    startY = touch.clientY; // Record starting Y position
-}
-
-function handleTouchEnd(e) {
-    const touch = e.changedTouches[0]; // Get the ending touch
-    endX = touch.clientX; // Record ending X position
-    endY = touch.clientY; // Record ending Y position
-
-    const diffX = endX - startX; // Horizontal swipe distance
-    const diffY = endY - startY; // Vertical swipe distance
-
-    // Determine swipe direction
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-        // Horizontal swipe
-        if (diffX > 0) {
-            moveRight();
-        } else {
-            moveLeft();
-        }
-    } else {
-        // Vertical swipe
-        if (diffY > 0) {
-            moveDown();
-        } else {
-            moveUp();
-        }
-    }
-}
-
-// Add touch event listeners to the game container
-const gameContainer = document.getElementById('game-container');
-gameContainer.addEventListener('touchstart', handleTouchStart);
-gameContainer.addEventListener('touchend', handleTouchEnd);
-
-// Optional: Prevent default behavior of touch events (scrolling)
-gameContainer.addEventListener('touchmove', function(e) {
-    e.preventDefault(); 
-}, { passive: false });
-
-
-
-
 const canvasSize = 300;
 const box = 10;
 let score = 0;
 let highScore = localStorage.getItem('highScore') ? parseInt(localStorage.getItem('highScore')) : 0;
 let snake;
 let food;
-let direction;
+let currentDirection = 'RIGHT';
+let nextDirection = 'RIGHT';
 let gameInterval;
 
 // Update score and high score display
 function updateScoreDisplay() {
-  document.getElementById('current-score').textContent = 'Score: ' + score;
-  document.getElementById('high-score').textContent = 'High Score: ' + highScore;
+  document.getElementById('score').textContent = 'Score: ' + score;
+  document.getElementById('highscore').textContent = 'Highscore: ' + highScore;
 }
 
+// Start the game
 function startGame() {
   // Initial settings
   canvas.width = canvasSize;
   canvas.height = canvasSize;
   score = 0;
-  direction = 'RIGHT';
+  nextDirection = 'RIGHT';
   
   snake = [
     { x: 50, y: 50 },
@@ -90,10 +45,10 @@ function update() {
   // Move the snake by creating a new head based on the direction
   let head = { ...snake[0] };
 
-  if (direction === 'RIGHT') head.x += box;
-  if (direction === 'LEFT') head.x -= box;
-  if (direction === 'UP') head.y -= box;
-  if (direction === 'DOWN') head.y += box;
+  if (nextDirection === 'RIGHT') head.x += box;
+  if (nextDirection === 'LEFT') head.x -= box;
+  if (nextDirection === 'UP') head.y -= box;
+  if (nextDirection === 'DOWN') head.y += box;
 
   // Snake eats food
   if (head.x === food.x && head.y === food.y) {
@@ -123,6 +78,7 @@ function update() {
 
   // Add new head to the snake
   snake.unshift(head);
+  currentDirection = nextDirection; // Update the direction after move
   draw();
 }
 
@@ -154,13 +110,28 @@ function generateFood() {
   };
 }
 
-// Keyboard event listener for controlling the snake
-document.addEventListener('keydown', function(event) {
-  if (event.keyCode === 37 && direction !== 'RIGHT') direction = 'LEFT';
-  if (event.keyCode === 38 && direction !== 'DOWN') direction = 'UP';
-  if (event.keyCode === 39 && direction !== 'LEFT') direction = 'RIGHT';
-  if (event.keyCode === 40 && direction !== 'UP') direction = 'DOWN';
-});
+// Button control functions
+function moveUp() {
+  if (currentDirection !== 'DOWN') nextDirection = 'UP';
+}
+
+function moveDown() {
+  if (currentDirection !== 'UP') nextDirection = 'DOWN';
+}
+
+function moveLeft() {
+  if (currentDirection !== 'RIGHT') nextDirection = 'LEFT';
+}
+
+function moveRight() {
+  if (currentDirection !== 'LEFT') nextDirection = 'RIGHT';
+}
 
 // Start the game when the page loads
 startGame();
+
+// Button event listeners for controlling the snake
+document.getElementById('upButton').addEventListener('click', moveUp);
+document.getElementById('downButton').addEventListener('click', moveDown);
+document.getElementById('leftButton').addEventListener('click', moveLeft);
+document.getElementById('rightButton').addEventListener('click', moveRight);
