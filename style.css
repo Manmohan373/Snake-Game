@@ -1,43 +1,101 @@
-#game-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
+/* Basic reset to remove default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
   
-  canvas {
-    border: 2px solid black;
-    margin-bottom: 10px;
-  }
-  
-  #score, #highscore {
+  /* Body styles */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #222;
     color: white;
-    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    overflow: hidden;
   }
   
-  .controls {
+  /* Title of the game */
+  h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #32CD32;
+  }
+  
+  /* Canvas container */
+  #game-container {
+    position: relative;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  /* Scoreboard area */
+  #scoreboard {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #FFF;
+  }
+  
+  #scoreboard span {
+    margin-right: 10px;
+  }
+  
+  /* Game over screen */
+  .game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: red;
+    display: none;
+  }
+  
+  /* Game canvas */
+  #gameCanvas {
+    border: 2px solid #FFF;
+    background-color: #333;
+  }
+  
+  /* Button styles */
+  #buttons {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
     margin-top: 20px;
   }
   
   button {
-    font-size: 20px;
     padding: 10px;
     margin: 5px;
-    width: 50px;
-    height: 50px;
+    background-color: #32CD32;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
   }
   
-  #leftButton, #rightButton {
-    display: inline-block;
+  button:hover {
+    background-color: #228B22;
   }
   
-  .game-over {
-    color: red;
-    font-size: 24px;
-    font-weight: bold;
+  /* Responsive design: Make the canvas and controls responsive for smaller screens */
+  @media (max-width: 600px) {
+    #gameCanvas {
+      width: 100%;
+      height: auto;
+    }
+    
+    #buttons {
+      flex-direction: column;
+    }
+    
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
   }
   
